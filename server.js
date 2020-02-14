@@ -4,12 +4,14 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const { dbConnect } = require("./db/connection");
 const blogRouter = require("./routes/blog");
+const authRouter = require("./routes/auth");
 
 dbConnect();
 dotenv.config();
 const app = express();
 
 app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
 if (process.env.NODE_ENV === "development") {
@@ -21,6 +23,7 @@ if (process.env.NODE_ENV === "development") {
     );
 }
 
+app.use("/api", authRouter);
 app.use("/blog", blogRouter);
 
 const port = process.env.PORT;
