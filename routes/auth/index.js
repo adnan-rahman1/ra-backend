@@ -7,8 +7,10 @@ const {
   validationError
 } = require("../../validation/auth");
 
+const { userAvaterConfigMiddleware } = require("../../config/photo");
 
-router.post("/signup", signUpValidationRule, validationError, signUp);
+
+router.post("/signup", signUpValidationRule, validationError, userAvaterConfigMiddleware, signUp);
 router.post("/account-activation", accountActivation);
 
 router.post("/signin", signInValidationRule, validationError, signIn);
