@@ -12,7 +12,7 @@ const app = express();
 
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
 if (process.env.NODE_ENV === "development") {
     app.use(
@@ -22,6 +22,7 @@ if (process.env.NODE_ENV === "development") {
       })
     );
 }
+
 
 app.use("/api", authRouter);
 app.use("/blog", blogRouter);

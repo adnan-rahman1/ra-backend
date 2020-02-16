@@ -9,6 +9,9 @@ const {
 
 const { userAvaterConfigMiddleware } = require("../../config/photo");
 
+router.post("/test", userAvaterConfigMiddleware, (req, res) => {
+  res.status(200).send("Got it");
+})
 
 router.post("/signup", signUpValidationRule, validationError, userAvaterConfigMiddleware, signUp);
 router.post("/account-activation", accountActivation);
